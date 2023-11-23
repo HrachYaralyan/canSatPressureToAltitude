@@ -111,9 +111,9 @@ function createAltitudeChart() {
             datasets: [{
                 label: 'Altitude Data',
                 data: altitudeData.map((altitude, index) => ({ x: index, y: altitude })),
-                borderColor: 'rgb(186, 192, 75)',
+                borderColor: 'rgb(52,81,48)',
                 borderWidth: 2,
-                pointBackgroundColor: 'rgb(186, 192, 75)',
+                pointBackgroundColor: 'rgb(52,81,48)',
                 pointRadius: 5,
                 fill: false,
             }],
