@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      /* color: rgb(186, 192, 75); */
+
+        }
+
+        .info {
+            border: 5px solid rgb(10, 10, 10);
+            width: 600px;
+            height: 100vh;
+            padding: 5px;
+        }
+
+        .box {
+            width: 800px;
+            height: 430px;
+        }
+
+        h3 {
+            color: red;
+            margin: 10px 0px;
+        }
+
+
+
+        @media screen and (max-width:850px) {
+            .box{
+                width: 375px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="box">
+            <canvas id="pressureChart" width="800" height="400"></canvas>
+        </div>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <div class="box">
+            <canvas id="altitudeChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+    <div class="info">
+        <h1 style="text-align: center;">Data procces</h1>
+
+        <h3>Initial data</h3>
+        <p id="one"></p>
+        <h3>filtered pressure data</h3>
+        <p id="two"></p>
+        <h3>pressure data converted to altitude</h3>
+        <p id="tree"></p>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js.js"></script>
+</body>
+
+</html>
