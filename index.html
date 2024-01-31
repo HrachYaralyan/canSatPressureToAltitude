@@ -24,7 +24,7 @@
         .info {
             border: 5px solid rgb(10, 10, 10);
             width: 600px;
-            height: 100vh;
+            min-height: 100vh;
             padding: 5px;
         }
 
@@ -37,8 +37,25 @@
             color: red;
             margin: 10px 0px;
         }
+        .interesting_facts{
+            /* width: 500px; */
+            height: 500px;
+            border: 5px solid green;
+        }
+        .fact_text{
+            color: gray;
+        }
 
+        .fact_max{
+            color: red;
+        }
 
+        .fact_min{
+            color: green;
+        }
+        .fact_average{
+            color: rgb(85, 16, 247);
+        }
 
         @media screen and (max-width:850px) {
             .box{
@@ -52,6 +69,14 @@
 <body>
     <div>
         <div class="box">
+            <canvas id="temperatureChart" width="800" height="400"></canvas>
+        </div>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <hr>
+        <div class="box">
             <canvas id="pressureChart" width="800" height="400"></canvas>
         </div>
         <hr>
@@ -62,22 +87,45 @@
         <div class="box">
             <canvas id="altitudeChart" width="800" height="400"></canvas>
         </div>
+        <div class="interesting_facts">
+            <h2 style="text-align: center;">Max , min , average</h2>
+            <hr>
+            <hr>
+            <div>
+                <h2 class="fact_text">The highest temperature recorded  <span  class="temp_fact fact_max"> </span> <span > (Celsus) </span></h2>
+                <h2 class="fact_text">The lowest temperature recorded  <span class="temp_fact fact_min"> </span> <span> (Celsus) </span></h2>
+                <h2 class="fact_text">The average temperature recorded  <span class="temp_fact fact_average"> </span> <span> (Celsus) </span></h2>
+                <hr>
+                <hr>
+                <h2 class="fact_text">The highest pressure recorded - <span class="press_fact fact_max">---</span> <span> (Pascal)</span></h2>
+                <h2 class="fact_text">The lowest pressure recorded - <span class="press_fact fact_min">---</span> <span> (Pascal)</span></h2>
+                <h2 class="fact_text">The average pressure recorded - <span class="press_fact fact_average">---</span> <span> (Pascal)</span></h2>
+                <hr>
+                <hr>
+                <h2 class="fact_text">The highest altitude recorded - <span class="alt_fact fact_max">---</span> <span> (Meters)</span></h2>
+                <h2 class="fact_text">The lowest altitude recorded - <span class="alt_fact fact_min">---</span> <span> (Meters)</span></h2>
+                <h2 class="fact_text">The average altitude recorded - <span class="alt_fact fact_average">---</span> <span> (Meters)</span></h2>
+
+            </div>
+
+        </div>
     </div>
     <div class="info">
         <h1 style="text-align: center;">Data procces</h1>
 
-        <h3>Initial data</h3>
+        <h3>Temperature data</h3>
         <p id="one"></p>
-        <h3>filtered pressure data</h3>
+        <h3>Pressure data</h3>
         <p id="two"></p>
-        <h3>pressure data converted to altitude</h3>
+        <h3>pressure data converted to Altitude</h3>
         <p id="tree"></p>
 
     </div>
-
+ 
 
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="./data.js"></script> -->
     <script src="./js.js"></script>
 </body>
 
