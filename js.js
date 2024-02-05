@@ -1,4 +1,3 @@
-
 let data = `["13.06","224","86994","-1897.70","-8116.24","1133.71"],
 ["13.25","227","86998","-1914.00","-8186.09","1148.26"],
 ["13.44","227","86995","-1931.45","-8254.12","1161.81"],
@@ -328,16 +327,35 @@ let data = `["13.06","224","86994","-1897.70","-8116.24","1133.71"],
 let p1 = document.getElementById("one");
 let p2 = document.getElementById("two");
 let p3 = document.getElementById("tree");
+let p4 = document.getElementById("four");
+let p5 = document.getElementById("five");
+let p6 = document.getElementById("six");
+let p7 = document.getElementById("seven");
 
 
 
 
 
+
+
+
+// const yroll = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+// const ypitch = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+// const yyaw = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+// Roll_axsis_chart
 
 
 let filterTemperature = [];
 let filteredArrPressure = [];
 let altitudeArray = [];
+let ledSensorArray = [];
+
+let roll_arry = [];
+let pitch_arry = [];
+let yaw_arry = [];
+
+
+
 
 console.log(data);
 
@@ -350,7 +368,14 @@ for(let i = 0; i < data.length; i++){
             // console.log("LoRa Receiver" ,"<----");
         }else{
             filterTemperature.push(itemArr[0])
+            ledSensorArray.push(itemArr[1])
             filteredArrPressure.push(itemArr[2])
+            roll_arry.push(itemArr[3])
+            pitch_arry.push(itemArr[4])
+            yaw_arry.push(itemArr[5])
+
+
+
         }
     }
 }
@@ -359,6 +384,18 @@ p1.innerHTML = filterTemperature.join(", ");
 
 
 p2.innerHTML = filteredArrPressure.join(", ");
+
+p4.innerHTML = ledSensorArray.join(", ");
+console.log(ledSensorArray);
+console.log(roll_arry);
+
+
+p5.innerHTML = roll_arry.join(", ");
+
+p6.innerHTML = pitch_arry.join(", ");
+
+p7.innerHTML = yaw_arry.join(", ");
+
 
 
 const calculateAltitude = (pressure) => {
@@ -394,6 +431,8 @@ console.log(altitudeArray.length);
 let temp_fact = document.querySelectorAll(".temp_fact");
 let press_fact = document.querySelectorAll(".press_fact");
 let alt_fact = document.querySelectorAll(".alt_fact");
+let led_fact = document.querySelectorAll(".led_fact");
+
 
 // temp_fact  press_fact  alt_fact
 
@@ -410,7 +449,9 @@ alt_fact[0].innerHTML = Math.max(...altitudeArray)
 alt_fact[1].innerHTML = Math.min(...altitudeArray)
 alt_fact[2].innerHTML =  Math.round(altitudeArray.reduce((a,b)=>{ return Number(a) + Number(b)}) / altitudeArray.length) 
 
-
+led_fact[0].innerHTML = Math.max(...ledSensorArray)
+led_fact[1].innerHTML = Math.min(...ledSensorArray)
+led_fact[2].innerHTML =  Math.round(ledSensorArray.reduce((a,b)=>{ return Number(a) + Number(b)}) / ledSensorArray.length) 
 
 let countTimeForChatr = Array(filteredArrPressure.length).fill("14s"); 
 
@@ -552,6 +593,143 @@ createTemperatureChart();
 
 
 
+// _______________________________create Led Sensor chart_______________________________________________
+
+
+
+function createLedSensorChart() {
+    const ctx = document.getElementById('LED_Sensor_chart').getContext('2d');
+
+    const led_ch = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timestamps,
+            datasets: [{
+                label: 'LED Sensor',
+                data: ledSensorArray,
+                borderColor: 'rgb(255, 208, 0)',
+                pointBackgroundColor: 'rgb(255, 208, 0)',
+                borderWidth: 2,
+                fill: true,
+            }],
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'category',
+                    title: {
+                        display: true,
+                        text: 'Time',
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'lumen',
+                    },
+                },
+            },
+        },
+    });
+}
+
+createLedSensorChart();
+
+// _______________________________end Led Sensor chart_______________________________________________
+
+
+
+
+
+
+// _______________________________create Roll_axsis_chart _______________________________________________
+
+
+
+function createRoll_axsis_chart() {
+    const ctx = document.getElementById('Roll_axsis_chart').getContext('2d');
+
+    const roll_ch = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timestamps,
+            datasets: [{
+                label: 'Roll',
+                data: roll_arry,
+                borderColor: 'rgb(65, 65, 66)',
+                pointBackgroundColor: 'rgb(65, 65, 66)',
+                borderWidth: 2,
+                fill: true,
+            }],
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'category',
+                    title: {
+                        display: true,
+                        text: 'Time',
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'x',
+                    },
+                },
+            },
+        },
+    });
+}
+
+createRoll_axsis_chart();
+
+// _______________________________end Roll_axsis_chart _______________________________________________
+
+
+// // _______________________________create Pitch_axsis_chart _______________________________________________
+
+
+
+function createPitch_axsis_chart() {
+    const ctx = document.getElementById('Pitch_axsis_chart').getContext('2d');
+
+    const Pitch_ch = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timestamps,
+            datasets: [{
+                label: 'Pitch',
+                data: pitch_arry,
+                borderColor: 'rgb(65, 65, 66)',
+                pointBackgroundColor: 'rgb(65, 65, 66)',
+                borderWidth: 2,
+                fill: true,
+            }],
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'category',
+                    title: {
+                        display: true,
+                        text: 'Time',
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'y',
+                    },
+                },
+            },
+        },
+    });
+}
+
+createPitch_axsis_chart();
+
+// // _______________________________end Pitch_axsis_chart _______________________________________________
 
 
 
@@ -559,7 +737,49 @@ createTemperatureChart();
 
 
 
+// // _______________________________create Yaw_axsis_chart _______________________________________________
 
+
+
+function createYaw_axsis_chart() {
+    const ctx = document.getElementById('Yaw_axsis_chart').getContext('2d');
+
+    const Yaw_ch = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: timestamps,
+            datasets: [{
+                label: 'Pitch',
+                data: yaw_arry,
+                borderColor: 'rgb(65, 65, 66)',
+                pointBackgroundColor: 'rgb(65, 65, 66)',
+                borderWidth: 2,
+                fill: true,
+            }],
+        },
+        options: {
+            scales: {
+                x: {
+                    type: 'category',
+                    title: {
+                        display: true,
+                        text: 'Time',
+                    },
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'z',
+                    },
+                },
+            },
+        },
+    });
+}
+
+createYaw_axsis_chart();
+
+// // _______________________________end Yaw_axsis_chart _______________________________________________
 
 
 
